@@ -2,16 +2,38 @@ import 'react-native-gesture-handler';
 import  React from 'react';
 import { Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './components/Home'
 import Major from './components/Major'
 import Message from './components/Message'
 import Share from './components/Share'
-import { ScreenContainer } from 'react-native-screens';
+import All from './components/All'
+import Detail from './components/Detail'
+
 
 
 // const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const MajorStack = createStackNavigator();
+
+function MajorStackScreen() {
+ return (
+   <MajorStack.Navigator>
+    <MajorStack.Screen name="专业" component={Major} options={{headerShown:false}}/>           
+    <MajorStack.Screen name="Detail" component={Detail} />
+    <MajorStack.Screen name="计算机" component={All} />
+    <MajorStack.Screen name="商科" component={All} />
+    <MajorStack.Screen name="艺术" component={All} />
+    <MajorStack.Screen name="媒体" component={All} />
+    <MajorStack.Screen name="西厨" component={All} />
+    <MajorStack.Screen name="管理" component={All} />
+
+   </MajorStack.Navigator>
+  );
+}
 
 
 // export const Splash = () =>(
@@ -54,7 +76,7 @@ export default class App extends React.Component {
               />
             )
           }}/>
-          <Tab.Screen name="Major" component={Major} options={{
+          <Tab.Screen name="Major" component={MajorStackScreen} options={{
             tabBarLabel:'专业',
             tabBarIcon:({tintColor}) => (
               <Image source={require('./images/tab2.png')}

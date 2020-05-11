@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import { Text, View, Image, Button, StyleSheet} from 'react-native';
+import { Text, View, Image, Button,TouchableOpacity, StyleSheet} from 'react-native';
 
 
 
@@ -11,17 +11,13 @@ export default function Catogeries(props){
     const {data} = props
 
         return(
-         <View className="card" onClick={() => this.props.navigation.navigate('All')}>
-
+         <TouchableOpacity style={[styles.container, {backgroundColor:'pink'}]} onPress={()=>props.gotoList(props.data.id)} >
+   
+       <View style={[styles.card, {backgroundColor:'black'}] } />
          <Image style={styles.image} source={data.src} resizeMode='cover' />
-
-         <View style={styles.circle}>
+ 
          <Text style={styles.text}>{data.title}</Text>  
-         </View>  
-
-
-
-        </View>
+        </TouchableOpacity>
         );
     
 }
@@ -32,48 +28,35 @@ const styles= StyleSheet.create({
 
   
 
-    header:{
-    position:"absolute",
-    left:0,
-    top:0,
-    },
-
+  
     container:{
-        marginTop:30,
-        borderRadius:20,
-        shadowColor: "#073829",
-        shadowOpacity: 0.5,
-        shadowRadius: 3,
-        shadowOffset: {
-          height: 0,
-          width: 0
-        },
-    
-        
+      width: '90%',
+      height:'25%',
+      alignSelf: 'center',
+      marginTop:60,
+     
+         
       },
     
       image:{
-        width:335, 
-        height:150,
-        borderRadius:10,
-        overflow: "hidden",    
+        position:'relative',
+        top:-30,
+        alignSelf:'flex-end',
+        width:'50%', 
+        height:'50%',
       },
     
       text:{
-        position:'absolute',
-        right:10,
-        bottom:10,
-        fontSize: 25,
+        fontSize: 13,
         fontWeight:'bold',
-        color:'#073829',
+        color:'#fff',
       },
-       circle:{
+      card:{
         position:'absolute',
-        right:-4,
-        bottom:-4,
-        width:50,
-        height:50,
-        backgroundColor:'#e1efeb',
-        borderRadius:50
-       }
+        width:'100%', 
+        height: '100%',
+        borderRadius:10,
+        zIndex:-1,
+      }
+     
 })
