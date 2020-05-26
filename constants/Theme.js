@@ -1,53 +1,188 @@
-const colors = {
-    accent: "#F3534A",
-    primary: "#0AC4BA",
-    secondary: "#2BDA8E",
-    tertiary: "#FFE358",
-    black: "#323643",
-    white: "#FFFFFF",
-    gray: "#9DA3B4",
-    gray2: "#C5CCD6"
-  };
-  
-  const sizes = {
-    // global sizes
-    base: 16,
-    font: 14,
-    radius: 6,
-    padding: 25,
-  
-    // font sizes
-    h1: 26,
-    h2: 20,
-    h3: 18,
-    title: 18,
-    header: 16,
-    body: 14,
-    caption: 12
-  };
-  
-  const fonts = {
-    h1: {
-      fontSize: sizes.h1
-    },
-    h2: {
-      fontSize: sizes.h2
-    },
-    h3: {
-      fontSize: sizes.h3
-    },
-    header: {
-      fontSize: sizes.header
-    },
-    title: {
-      fontSize: sizes.title
-    },
-    body: {
-      fontSize: sizes.body
-    },
-    caption: {
-      fontSize: sizes.caption
-    }
-  };
-  
-  export { colors, sizes, fonts };
+const shoppingMall=[
+  {
+    id:0,
+    title:'Cloth',
+    storeName:'Rideau Center',
+    image:[
+      {uri: 'https://live.staticflickr.com/685/33482971655_8e9a0b4af1_b.jpg'},
+      {uri: 'https://i.pinimg.com/originals/39/b1/2f/39b12f149bebb315b7e55eb7ca89a9be.png'},
+      {uri: 'https://images.squarespace-cdn.com/content/v1/529fc0c0e4b088b079c3fb6d/1402377962997-VW05G1V69J0M8FQI36R3/ke17ZwdGBToddI8pDm48kJawRAcDZJL4mkyEYMB126dZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxDgnk20f0G4SPJBUJABBs5h-dKECUQ3-Mzjf_P43-Tichse6gFnYbrm23SDeT78nE/nordstrom+nashville+retail+insider.jpeg'},
+      {uri: 'https://www.aritzia.com/on/demandware.static/-/Sites/default/dw99cef7a1/images/slot/storeImages/2017/storelist-04-default.jpg'},
+      {uri: 'https://curiocity.com/toronto/wp-content/uploads/2019/04/img_2657.jpg'},
+    ],
+    instruction:'The Rideau Centre (French: Centre Rideau) (corporately styled as CF Rideau Centre) is a four-level shopping centre on Rideau Street in Ottawa, Ontario, Canada. It borders on Rideau Street, the ByWard Market, the Rideau Canal, the Mackenzie King Bridge, and Nicholas Street in Downtown Ottawa. Over 20 million people visit the mall annually.[1] It is the largest shopping mall and the main transit hub in the National Capital Region. The Rideau Centre complex has approximately 180 retailers, a 487-room Westin Hotel, a rooftop park, and the Shaw Centre (formerly the Ottawa Convention Centre). Independently operated from the mall, Hudson Bay is linked via a skywalk, while the National Defence Headquarters building is linked through an underground tunnel.',
+  },
+  {
+    id:1, 
+    title:'Cloth',
+    storeName:'Bayshore',
+    image:[
+      {uri: 'https://ewscripps.brightspotcdn.com/dims4/default/cc9feb7/2147483647/strip/true/crop/949x534+54+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fewscripps.brightspotcdn.com%2Fe5%2F45%2Fae0736264aba8949e6bb5795f9d0%2Fbayshore.JPG'},
+      {uri: 'https://image.freepik.com/free-photo/fashion-women-s-clothes-shopping-mall-windows_1112-5261.jpg'},
+      {uri: 'https://images.squarespace-cdn.com/content/v1/529fc0c0e4b088b079c3fb6d/1402377962997-VW05G1V69J0M8FQI36R3/ke17ZwdGBToddI8pDm48kJawRAcDZJL4mkyEYMB126dZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxDgnk20f0G4SPJBUJABBs5h-dKECUQ3-Mzjf_P43-Tichse6gFnYbrm23SDeT78nE/nordstrom+nashville+retail+insider.jpeg'},
+      {uri: 'https://www.aritzia.com/on/demandware.static/-/Sites/default/dw99cef7a1/images/slot/storeImages/2017/storelist-04-default.jpg'},
+      {uri: 'https://curiocity.com/toronto/wp-content/uploads/2019/04/img_2657.jpg'},
+    ],
+    instruction:'Bayshore (also known as Accora Village)[1] is a neighbourhood in Bay Ward in the west end of Ottawa, Ontario, Canada. Prior to amalgamation in 2001, the neighbourhood was in the City of Nepean. It is bounded east by row houses off Bayshore Drive, to the north Carling Avenue, to the west Holly Acres Drive and the Lakeview neighbourhood, and to the south Ontario Highway 417. The main street in Bayshore is Woodridge Crescent, while the Bayshore Station is the major bus transit station.',
+  },
+  {
+    id:2,
+    title:'Cloth',
+    storeName:'tanger outlets',
+    image:[
+      {uri: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Center_Courtyard_and_Ice_Skating_Rink_Deer_Park_NY_Tanger.jpg'},
+      {uri: 'https://i.pinimg.com/originals/39/b1/2f/39b12f149bebb315b7e55eb7ca89a9be.png'},
+      {uri: 'https://images.squarespace-cdn.com/content/v1/529fc0c0e4b088b079c3fb6d/1402377962997-VW05G1V69J0M8FQI36R3/ke17ZwdGBToddI8pDm48kJawRAcDZJL4mkyEYMB126dZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxDgnk20f0G4SPJBUJABBs5h-dKECUQ3-Mzjf_P43-Tichse6gFnYbrm23SDeT78nE/nordstrom+nashville+retail+insider.jpeg'},
+      {uri: 'https://www.aritzia.com/on/demandware.static/-/Sites/default/dw99cef7a1/images/slot/storeImages/2017/storelist-04-default.jpg'},
+      {uri: 'https://curiocity.com/toronto/wp-content/uploads/2019/04/img_2657.jpg'},
+    ],
+    instruction:'When you are looking for the best value, the best brands and the best trendsetting ideas, think Tanger Outlets. Shopping-mall chain featuring a variety of brand-name & designer outlet stores. Join TangerClub today for exclusive members only savings offers and exciting. Tanger perks all year long. Plus, learn how to turn your receipts into rewards!',
+  },
+  {
+    id:3,
+    title:'Cloth',
+    storeName:'St. Laurent',
+    image:[
+      {uri: 'https://www.ctvnews.ca/polopoly_fs/1.2546645.1441298926!/httpImage/image.jpg_gen/derivatives/landscape_620/image.jpg'},
+      {uri: 'https://i.pinimg.com/originals/39/b1/2f/39b12f149bebb315b7e55eb7ca89a9be.png'},
+      {uri: 'https://images.squarespace-cdn.com/content/v1/529fc0c0e4b088b079c3fb6d/1402377962997-VW05G1V69J0M8FQI36R3/ke17ZwdGBToddI8pDm48kJawRAcDZJL4mkyEYMB126dZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxDgnk20f0G4SPJBUJABBs5h-dKECUQ3-Mzjf_P43-Tichse6gFnYbrm23SDeT78nE/nordstrom+nashville+retail+insider.jpeg'},
+      {uri: 'https://www.aritzia.com/on/demandware.static/-/Sites/default/dw99cef7a1/images/slot/storeImages/2017/storelist-04-default.jpg'},
+      {uri: 'https://curiocity.com/toronto/wp-content/uploads/2019/04/img_2657.jpg'},
+    ],
+    instruction:'St. Laurent Boulevard (Ottawa Road #26) is an arterial road in Ottawa, Ontario, Canada. Beginning at the Royal Canadian Mounted Police college complex at Sandridge Road in the Manor Park neighbourhood, St. Laurent Boulevard runs in a straight line, slightly east of south, until it reaches Walkley Road. It then curves west and intersects with Conroy Road and Don Reid Drive. In Ottawa, the name of the street is pronounced exclusively in French, even among Anglophones, as it honours former Canadian Prime Minister Louis St. Laurent. Prior to urbanization, it was known as Hawthorne Road.',
+  }, 
+  {
+    id:4,
+    title:'Food',
+    storeName:'Asian Restaurants',
+    image:[
+      {uri: 'https://ottawazine.com/wp-content/uploads/2018/07/Mainpage-Photo.jpg'},
+      {uri: 'https://d2d5f3568fvb9s.cloudfront.net/wp-content/uploads/2018/08/21162647/Webp.net-resizeimage-960x500.jpg'},
+      {uri: 'https://previews.123rf.com/images/kesu87/kesu871704/kesu87170400093/76263093-various-of-asian-meals-on-rustic-background-top-view-place-for-text-asian-food-concept-.jpg'},
+      {uri: 'https://1.bp.blogspot.com/-AoeYDXH52iI/WZwO-ZqlwnI/AAAAAAAARUQ/ICir6Kw2AzAnMeMfbxPnPDTN_Pfg8AmLQCLcBGAs/s1600/BeFunky%2BCollage.jpg'},
+      {uri: 'https://images.chinahighlights.com/allpicture/2019/01/482fb1f829ce4e6496b94fea_894x596.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:5, 
+    title:'Food',
+    storeName:'Western Restaurants',
+    image:[
+      {uri: 'https://ottawazine.com/wp-content/uploads/2018/07/Mainpage-Photo.jpg'},
+      {uri: 'https://d2d5f3568fvb9s.cloudfront.net/wp-content/uploads/2018/08/21162647/Webp.net-resizeimage-960x500.jpg'},
+      {uri: 'https://previews.123rf.com/images/kesu87/kesu871704/kesu87170400093/76263093-various-of-asian-meals-on-rustic-background-top-view-place-for-text-asian-food-concept-.jpg'},
+      {uri: 'https://1.bp.blogspot.com/-AoeYDXH52iI/WZwO-ZqlwnI/AAAAAAAARUQ/ICir6Kw2AzAnMeMfbxPnPDTN_Pfg8AmLQCLcBGAs/s1600/BeFunky%2BCollage.jpg'},
+      {uri: 'https://images.chinahighlights.com/allpicture/2019/01/482fb1f829ce4e6496b94fea_894x596.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:6,
+    title:'Food',
+    storeName:'French Restaurants',
+    image:[
+      {uri: 'https://ottawazine.com/wp-content/uploads/2018/07/Mainpage-Photo.jpg'},
+      {uri: 'https://d2d5f3568fvb9s.cloudfront.net/wp-content/uploads/2018/08/21162647/Webp.net-resizeimage-960x500.jpg'},
+      {uri: 'https://previews.123rf.com/images/kesu87/kesu871704/kesu87170400093/76263093-various-of-asian-meals-on-rustic-background-top-view-place-for-text-asian-food-concept-.jpg'},
+      {uri: 'https://1.bp.blogspot.com/-AoeYDXH52iI/WZwO-ZqlwnI/AAAAAAAARUQ/ICir6Kw2AzAnMeMfbxPnPDTN_Pfg8AmLQCLcBGAs/s1600/BeFunky%2BCollage.jpg'},
+      {uri: 'https://images.chinahighlights.com/allpicture/2019/01/482fb1f829ce4e6496b94fea_894x596.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:7,
+    title:'Live',
+    storeName:'Apartment',
+    image:[
+      {uri: 'https://d2kcmk0r62r1qk.cloudfront.net/imageSponsors/xlarge/2019_03_05_04_23_04_www.1140wellington.com-945894652137545.jpg'},
+      {uri: 'https://cdn.theliftsystem.com/clvgroup/images/gallery/512/1543520579_img_3696_edit.jpg'},
+      {uri: 'https://tartanhomes.com/wp-content/uploads/2018/10/T20181015-4370-768x481.jpg'},
+      {uri: 'https://st.hzcdn.com/simgs/c8e100a90106a961_4-6971/home-design.jpg'},
+      {uri: 'https://postmediaottawacitizen2.files.wordpress.com/2014/12/tartan-homes-has-new-models-at-havencrest-in-barrhaven-tart.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:8, 
+    title:'Live',
+    storeName:'Condo',
+    image:[
+      {uri: 'https://d2kcmk0r62r1qk.cloudfront.net/imageSponsors/xlarge/2019_03_05_04_23_04_www.1140wellington.com-945894652137545.jpg'},
+      {uri: 'https://cdn.theliftsystem.com/clvgroup/images/gallery/512/1543520579_img_3696_edit.jpg'},
+      {uri: 'https://tartanhomes.com/wp-content/uploads/2018/10/T20181015-4370-768x481.jpg'},
+      {uri: 'https://st.hzcdn.com/simgs/c8e100a90106a961_4-6971/home-design.jpg'},
+      {uri: 'https://postmediaottawacitizen2.files.wordpress.com/2014/12/tartan-homes-has-new-models-at-havencrest-in-barrhaven-tart.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:9,
+    title:'Live',
+    storeName:'House',
+    image:[
+      {uri: 'https://d2kcmk0r62r1qk.cloudfront.net/imageSponsors/xlarge/2019_03_05_04_23_04_www.1140wellington.com-945894652137545.jpg'},
+      {uri: 'https://cdn.theliftsystem.com/clvgroup/images/gallery/512/1543520579_img_3696_edit.jpg'},
+      {uri: 'https://tartanhomes.com/wp-content/uploads/2018/10/T20181015-4370-768x481.jpg'},
+      {uri: 'https://st.hzcdn.com/simgs/c8e100a90106a961_4-6971/home-design.jpg'},
+      {uri: 'https://postmediaottawacitizen2.files.wordpress.com/2014/12/tartan-homes-has-new-models-at-havencrest-in-barrhaven-tart.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:10,
+    title:'Live',
+    storeName:'Dormitory',
+    image:[
+      {uri: 'https://d2kcmk0r62r1qk.cloudfront.net/imageSponsors/xlarge/2019_03_05_04_23_04_www.1140wellington.com-945894652137545.jpg'},
+      {uri: 'https://cdn.theliftsystem.com/clvgroup/images/gallery/512/1543520579_img_3696_edit.jpg'},
+      {uri: 'https://tartanhomes.com/wp-content/uploads/2018/10/T20181015-4370-768x481.jpg'},
+      {uri: 'https://st.hzcdn.com/simgs/c8e100a90106a961_4-6971/home-design.jpg'},
+      {uri: 'https://postmediaottawacitizen2.files.wordpress.com/2014/12/tartan-homes-has-new-models-at-havencrest-in-barrhaven-tart.jpg'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:11,
+    title:'Trip',
+    storeName:'渥太华',
+    image:[
+      {uri: 'https://ch.ottawatourism.ca/wp-content/uploads//2015/05/985x554_Meetings_AttractiveIncentives.jpg'},
+      {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Centre_Block_-_Parliament_Hill.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/2D/FB/2DFB4F3688F0671317BBF83DCD315B06.png'},
+      {uri: 'https://www.ottawatourism.ca/wp-content/uploads/2014/11/Shaw-Centre_1.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/AE/3B/AE3BB021364F0F52908C25FD6332E211.png'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:12, 
+    title:'Trip',
+    storeName:'加拿大',
+    image:[
+      {uri: 'https://ch.ottawatourism.ca/wp-content/uploads//2015/05/985x554_Meetings_AttractiveIncentives.jpg'},
+      {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Centre_Block_-_Parliament_Hill.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/2D/FB/2DFB4F3688F0671317BBF83DCD315B06.png'},
+      {uri: 'https://www.ottawatourism.ca/wp-content/uploads/2014/11/Shaw-Centre_1.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/AE/3B/AE3BB021364F0F52908C25FD6332E211.png'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+  {
+    id:13,
+    title:'Trip',
+    storeName:'周边国家',
+    image:[
+      {uri: 'https://ch.ottawatourism.ca/wp-content/uploads//2015/05/985x554_Meetings_AttractiveIncentives.jpg'},
+      {uri: 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Centre_Block_-_Parliament_Hill.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/2D/FB/2DFB4F3688F0671317BBF83DCD315B06.png'},
+      {uri: 'https://www.ottawatourism.ca/wp-content/uploads/2014/11/Shaw-Centre_1.jpg'},
+      {uri: 'https://oss.dameicdn.com/uploads/AE/3B/AE3BB021364F0F52908C25FD6332E211.png'},
+    ],
+    instruction:'要在渥太华找到一个大型购物中心相当容易，无论您多么挑剔，总能在其中找到心仪之地，而其中最出名，交通最便利的，当属位于渥太华市中心里多大街（Rideau Street）黄金位置的里多购物中心（CF Rideau Centre）。拥有225多家名品入驻，三层楼的综合商场不仅有诺德斯特龙（Nordatrom）、哈德逊湾（Hudson Bay）等大型百货公司，也有许多中档品牌专卖店，产品种类繁多。购物之余，这里也是享受美食的好去处，商场内还有健身中心开放',
+  },
+
+]
+
+
+export default shoppingMall;

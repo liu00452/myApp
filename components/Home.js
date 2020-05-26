@@ -19,7 +19,6 @@ const { width } = Dimensions.get("window");
 export default class Home extends React.Component{
 
 
-
       state = {
         active: 0,
         xTabOne: 0,
@@ -34,22 +33,22 @@ export default class Home extends React.Component{
         ottwawalife:[
             {
                 id: 0,
-                title:'衣',
+                title:'Cloth',
                 src: Cloth,
             },
             {
                 id: 1,
-                title:'食',
+                title:'Food',
                 src: Food,
             },
             {
                 id: 2,
-                title:'住',
+                title:'Live',
                 src: House,
             },
             {
                 id: 3,
-                title:'行',
+                title:'Trip',
                 src: Travel,
             },
             
@@ -58,22 +57,22 @@ export default class Home extends React.Component{
         schoolLife:[
         {
             id: 0,
-            title:'同学们的作品展出',
+            title:"Exhibition of students' works",
             src: Show, 
         },
         {
             id: 1,
-            title:'企业招聘现场',
+            title:'Enterprise recruitment',
             src: Hire, 
         },
         {
             id: 2,
-            title:'丰富多彩的校园活动',
+            title:'Colorful campus activities ',
             src: School, 
         },
         {
             id: 3,
-            title:'期待已久的开学/毕业典礼',
+            title:'Commencement / graduation ceremony',
             src: Ceremony, 
         },
     ]
@@ -145,7 +144,19 @@ export default class Home extends React.Component{
         }
     };
      
+
+    goToDetail = (item) =>{
+        this.props.navigation.navigate("Cloth",{item});
+    
+    }
+
+    goDetail = (item) =>{
+        this.props.navigation.navigate("SchoolLife",{item});
+    
+    }
+
     render(){
+
 
         let {
             xTabOne,
@@ -159,23 +170,22 @@ export default class Home extends React.Component{
             translateY
         } = this.state;
 
-        const mainLife = this.state.ottwawalife.map(card => < FirstRoute key={card.id} data={card} />)
-        const acLife = this.state.schoolLife.map(card => < SecondRoute key={card.id} data={card} />)
+        const mainLife = this.state.ottwawalife.map(card => < FirstRoute key={card.id} data={card} goToDetail={this.goToDetail} />)
+        const acLife = this.state.schoolLife.map(card => < SecondRoute key={card.id} data={card} goDetail={this.goDetail} />)
 
 
         return (
-        <View className='home' > 
+        <View className='home' style={{backgroundColor:'#e6e1cf'}} > 
           <View style={styles.header}>
             <Image source={require('../images/header.png')}
               resizeMode='cover'
               style={{width:380, height:150}}
               />
-                <Text style={styles.sentence1}>Hello 小明,Welcome To Canada!</Text>
-                <Text style={styles.sentence2}>让我们开启一场渥太华之旅, 你 准备好了吗？</Text>
+                <Text style={styles.sentence1}>Hello Joe, Welcome To Canada!</Text>
+                <Text style={styles.sentence2}>Let's have a trip, are you ready？</Text>
             </View>
 
             <View style={styles.style1}>
-            {/* <View style={styles.style1}>   */}
                  <Animated.View
                             style={{
                                 position: "absolute",
@@ -183,8 +193,9 @@ export default class Home extends React.Component{
                                 height: "100%",
                                 top: 0,
                                 left: 0,
-                                backgroundColor: "#52915A",
+                                backgroundColor: "#4f956e",
                                 borderRadius: 4,
+                                opacity:0.6,
                                 transform: [
                                     {
                                         translateX
@@ -211,7 +222,7 @@ export default class Home extends React.Component{
                                     fontWeight: active === 0 ? "900" : "300",
                                     fontSize: active === 0 ? 18 : 14,
                                 }}>
-                                渥太华生活
+                                Our Life
                             </Text>
 
                         </TouchableOpacity>
@@ -234,7 +245,7 @@ export default class Home extends React.Component{
                                     fontWeight: active === 1 ? "900" : "300",
                                     fontSize: active === 1 ? 18 : 14,
                                 }}>
-                                校园生活
+                            Our Campus
                             </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
@@ -253,14 +264,15 @@ export default class Home extends React.Component{
                             <Text style={{
                                     color: active === 2 ? "#e1efeb" : "#073829",
                                     fontWeight: active === 2 ? "900" : "300",
-                                    fontSize: active === 2 ? 18 : 14,
+                                    fontSize: active === 2 ? 16 : 14,
                                 }}>
-                                相关专业推荐
-                            </Text>
+                             Our works 
+                              </Text>
                         </TouchableOpacity>
                     </View>
         
-                    <ScrollView ref={(ref) => this.ScrollView =ref} >
+        <View style={{height:1250}}>
+                    <ScrollView >
                         <Animated.View
                             style={{
                                 justifyContent: "center",
@@ -319,8 +331,8 @@ export default class Home extends React.Component{
                           
                         </Animated.View>
                     </ScrollView>
-             
             </View>
+    </View>
 
        
             );
@@ -357,6 +369,7 @@ export default class Home extends React.Component{
         // flex:1,
         width: '90%',
          marginLeft:19,
+         borderRadius:8,
       marginTop:140,
       flexDirection: "row",
       justifyContent: "space-between",
@@ -367,7 +380,7 @@ export default class Home extends React.Component{
       shadowRadius: 3,
       shadowOffset: {
         height: 1,
-        width: 1
+        width: 0
       },
      
      
@@ -380,12 +393,10 @@ export default class Home extends React.Component{
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        borderWidth: 2,
+        borderWidth: 0,
         borderColor: "#073829",
-        borderRadius: 1,
-        borderRightWidth: 0,
-        borderTopRightRadius: 0,
-        borderBottomRightRadius: 0
+        borderRadius: 8,
+      
     }
 
 });

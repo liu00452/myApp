@@ -1,14 +1,14 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, Dimensions} from 'react-native';
+import { Text, View, Image, StyleSheet, Dimensions,TouchableOpacity} from 'react-native';
 
 
 
-export default function FirstRoute(props){
+export default function SecondRoute(props){
 
     const {data} = props
 
         return(
-         <View className="card" style={[ styles.container, { backgroundColor: '#fff' } ]}>
+         <TouchableOpacity  style={[ styles.container, { backgroundColor: '#fff' } ]} onPress={()=>{props.goDetail(data)}}>
 
          <Image style={styles.image} source={data.src} resizeMode='cover' />
 
@@ -16,7 +16,7 @@ export default function FirstRoute(props){
          <Text style={styles.text}>{data.title}</Text>  
       
 
-        </View>
+        </TouchableOpacity>
         );
     }
 
@@ -42,8 +42,6 @@ export default function FirstRoute(props){
           width:335, 
           height:150,
           borderRadius:10,
-          borderBottomEndRadius:0,
-          borderBottomLeftRadius:0,
           overflow: "hidden",    
         },
       

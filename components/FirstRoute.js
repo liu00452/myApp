@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet} from 'react-native';
+import { Text, View, Image, StyleSheet,TouchableOpacity } from 'react-native';
 
 
 
@@ -8,7 +8,7 @@ export default function FirstRoute(props){
     const {data} = props
 
         return(
-         <View className="card" style={[ styles.container, { backgroundColor: 'none' } ]}>
+         <TouchableOpacity style={[ styles.container, { backgroundColor: 'none' } ]} onPress={()=>{props.goToDetail(data)}}>
 
          <Image style={styles.image} source={data.src} resizeMode='cover' />
 
@@ -16,7 +16,7 @@ export default function FirstRoute(props){
          <Text style={styles.text}>{data.title}</Text>  
          </View>  
 
-        </View>
+        </TouchableOpacity >
         );
     
 }
@@ -54,9 +54,9 @@ const styles= StyleSheet.create({
 
   text:{
     position:'absolute',
-    right:10,
-    bottom:10,
-    fontSize: 25,
+    right:4,
+    bottom:15,
+    fontSize: 18,
     fontWeight:'bold',
     color:'#073829',
   },

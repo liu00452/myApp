@@ -1,65 +1,46 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet, ScrollView, TouchableOpacity,FlatList, Dimensions} from 'react-native';
-import Categories from './Catogeries';
-import Cloth from '../images/cloth.png';
-import Food from '../images/food.png';
-import House from '../images/house.jpg';
-import Travel from '../images/travel.jpg';
+import { Button, Text, View, Image, StyleSheet, ScrollView, TouchableOpacity,Animated, Dimensions, TextInput, Alert} from 'react-native';
 import mock from '../constants/Mock'
-
-// import  mock  from "../constants/Mock";
-// import  theme  from "../constants";
-
-
-import { createStackNavigator} from '@react-navigation/stack';
+import Detail from './Detail'
+import * as Icon from '@expo/vector-icons'
 
 
+const { width, height } = Dimensions.get("window");
 
 
 export default class Major extends React.Component{
 
 
-
+    
     state={
         subCatogery:[],
-        active:"商科",
+        active:"All",
+        catogery:{},
+
+        searchFocus: new Animated.Value(0.6),
+        searchString: ""
     }
 
     componentDidMount() {
       
         this.setState({ subCatogery: mock });
       }
-    
-    // gotoList = (id) =>{
-    //     if(id == 0){
-    //         this.props.navigation.navigate('所有专业');
-    //     }else if(id == 1){
-    //         this.props.navigation.navigate('计算机');
-    //     }
-    //     else if(id == 2){
-    //         this.props.navigation.navigate('商科');
-    //     }
-    //     else if(id == 3){
-    //          this.props.navigation.navigate('艺术');
-    //     }
-    //     else if(id == 4){
-    //         this.props.navigation.navigate('媒体');
-    //    }
-    //    else if(id == 5){
-    //          this.props.navigation.navigate('西厨');  
-    //   }else{
-    //          this.props.navigation.navigate('管理');
-    //   }      
-    
-    // }
 
     handleTab = tab => {
         // const { catogeries } = this.state;
+      if(tab == 'All'){
+        const subCatogery = mock;
+        this.setState({ active: tab, subCatogery: subCatogery });
+
+       }else{
         const filtered = mock.filter(category =>
-          category.tags.includes(tab)
-        );
-    
-        this.setState({ active: tab, subCatogery: filtered });
+            category.tags.includes(tab)
+          );
+      
+          this.setState({ active: tab, subCatogery: filtered });
+       }
+
+      
       };
 
     renderTab(tab) {
@@ -68,6 +49,7 @@ export default class Major extends React.Component{
     
         return (
           <TouchableOpacity
+            key={tab.id}
             onPress={() => this.handleTab(tab)}
             style={[styles.tab, isActive ? styles.active : null]}
           >
@@ -76,6 +58,76 @@ export default class Major extends React.Component{
             </Text>
           </TouchableOpacity>
         );
+      };
+
+      onItemClickHandler = (category) =>{
+
+        this.props.navigation.push("Detail",{category});
+        this.setState({category: category});
+        // this.props.navigator.push({id: category.id});
+    
+      }
+    
+      handleSearchFocus(status) {
+        Animated.timing(this.state.searchFocus, {
+          toValue: status ? 0.8 : 0.6, 
+          duration: 150 
+        }).start();
+      }
+
+      handleSearch = () =>{
+
+        const value = this.state.searchString;
+        const subCatogery = mock.filter(item => item.tags.includes(value) || item.title.includes(value))
+
+        if(subCatogery.length !== 0){
+
+          this.setState({subCatogery:subCatogery}) 
+       
+        }else {
+          const subCatogery = mock;
+          this.setState({ subCatogery: subCatogery });
+          Alert.alert("So sorry, there is no result! You can try to input key word and search again! ")
+  
+         }
+       
+      }
+
+
+      renderSearch() {
+
+        const { searchString, searchFocus } = this.state;
+        const isEditing = searchFocus && searchString;
+        // const filteredItem = this.
+
+        return (
+          <View style={{flexDirection:'row',justifyContent:'space-between', margin:5}}>
+            <TextInput
+              placeholder="Search"
+              placeholderTextColor='grey'
+              onFocus={() => this.handleSearchFocus(true)}
+              onBlur={() => this.handleSearchFocus(false)}
+              onChangeText={text => this.setState({ searchString: text })}
+              value={searchString} 
+              returnKeyType="search"
+              onSubmitEditing={this.handleSearch}            
+            />
+            {/* <Feather name={isEditing ? null : "search"} size={22} color="grey" /> */}
+
+            
+          <TouchableOpacity
+              onPress={() => isEditing ? this.setState({ searchString: null }) : null}
+           >
+            <Icon.FontAwesome
+              name={isEditing ? "close" : "search"}
+              color='grey'
+              size={18}
+                        />
+           </TouchableOpacity> 
+           
+             </View>
+        );
+        
       }
     
 
@@ -84,49 +136,62 @@ export default class Major extends React.Component{
         
         const { navigation } = this.props;
         const subCatogery = this.state.subCatogery;
-       
-        const tabs = ["商科", "工科", "文学","健康","理科"];
+        const tabs = ["All","Business", "Media", "Computer","Health","Tourism"];
     
+        return(            
 
-        return(
-
-            
-
-        <View>
+        <View style={{flex:1, backgroundColor:"#4f956e"}}>
             <View style={styles.header}>
-             <Image source={require('../images/header.png')}
-              resizeMode='cover'
-              style={{width:380, height:150}}
-              />
-              <Text style={styles.sentence}>快来看看你最喜欢哪个学院呢</Text>
+
+            <Text style={styles.sentence}>Our school's programs</Text>
+
+            <View style={styles.search}>
+            {this.renderSearch()}           
             </View>
 
-       <View style={styles.tabs}>
-           {tabs.map(tab => this.renderTab(tab))}
-       </View>
+            <View style={styles.background}>
+               <View style={styles.headers}></View>
+            </View>
+            
+           </View>
 
 
-       <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={{ paddingVertical:  32 }}
-        >
-          <View >
+
+
+        <View style={styles.container}>
+            <View 
+            style={styles.tabs}>
+               {tabs.map(tab => this.renderTab(tab))}
+            </View>
+
+
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{ paddingVertical:  -30}}
+             >
+            <View style={{flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between'}}>
             {subCatogery.map(category => (
               <TouchableOpacity
-                key={category.name}
-                onPress={() => navigation.navigate("Detail")}
+                data={category}
+                key={category.id}
+                onPress={() => this.onItemClickHandler(category)}
+                // onPress={() => navigation.navigate("Detail",{category})}
               >
-                <View style={[styles.card, {backgroundColor:'black'}] } />
-         <Image style={styles.image} source={category.src} resizeMode='cover' />
+             <View style={[styles.card, {backgroundColor:'#faf4de'}] } >
+
+             <Image  style={styles.image} source={category.src} resizeMode='contain' />
+          
+             <Text style={styles.textLine2}>{category.title}</Text>  
+             <Text style={styles.textLine1}>{category.year}</Text> 
  
-         <Text style={styles.text}>{category.title}</Text>  
+
+             </View>
               </TouchableOpacity>
+
             ))}
           </View>
         </ScrollView>
-
-
-
+        </View>
         </View>
         )
     }
@@ -139,11 +204,46 @@ export default class Major extends React.Component{
 const styles= StyleSheet.create({
 
   
+ background:{
+        opacity:0.3,
+        width:100,
+        height:100,
+        borderRadius:500/2,
+        backgroundColor:'#ebf4ee',
+        position:'relative',
+        left:-20,
+        top:-30,
+        shadowColor: "#073829",
+        shadowOpacity: 0.8,
+        shadowRadius: 5,
+        shadowOffset: {
+          height: 1,
+          width: 2
+        },
+    },
+    headers:{
+      opacity:0.5,
+      width:200,
+      height:200,
+      borderRadius:500/2,
+      backgroundColor:'#ebf4ee',
+      position:'relative',
+      left:260,
+      top:50,
+      shadowColor: "#073829",
+      shadowOpacity: 1,
+      shadowRadius: 2,
+      shadowOffset: {
+        height: 1,
+        width: -2
+      },
+  },
 
     header:{
     position:"absolute",
     left:0,
     top:0,
+    right:0,
     },
     catogery:{
         marginTop:120,
@@ -163,9 +263,10 @@ const styles= StyleSheet.create({
     sentence:{
     position:'absolute',
     fontSize:20,
-    color:'white',
+    color:'#e6e1cf',
     fontWeight:'900',
-    top:40,
+    top:95,
+    left:width*0.05,
     },
 
 
@@ -174,38 +275,93 @@ const styles= StyleSheet.create({
         paddingBottom: 16
       },
       active: {
-        borderBottomColor: 'blue',
-        borderBottomWidth: 3
+        borderBottomColor: '#073829',
+        borderBottomWidth: 3,
       },
       tabs: {
         flexDirection:'row',
-        borderBottomColor: "blue",
+        borderBottomColor: "#C5CCD6",
         borderBottomWidth: StyleSheet.hairlineWidth,
         marginVertical: 16,
-        marginHorizontal: 32
+        marginHorizontal: 20,
       },
 
+     
+      container:{
+        width:'100%',
+        flex:1,
+        alignSelf: 'center',
+        marginTop:140,
+        borderColor: "#e6e1cf",
+        borderRadius:30,
+        borderBottomEndRadius:0,
+        borderBottomLeftRadius:0,
+        backgroundColor:'#e6e1cf',
+        },
 
+        card:{
+         borderRadius:5,
+         width:160,
+         height:140,
+         marginLeft:10,
+         marginRight:10,
+         marginTop:50,
+         shadowColor: "grey",
+         shadowOpacity: 0.5,
+         shadowRadius: 5,
+         shadowOffset: {
+           height: 7,
+           width: 5
+         },
 
-      image:{
+        },
+        textLine1:{
+            position:'absolute',
+            fontSize:13,
+            fontWeight:'200',
+            textAlign:'left',
+            bottom:18,
+            left:8,
+        },
+        textLine2:{
+            position:'relative',
+            fontSize:18,
+            textAlign:'left',
+            bottom:25,
+            left: 8,
+            color:'#52915A',
+            fontWeight:'700',
+
+        },
+        image:{
+            position:'relative',
+            top:-30,
+            right:-50,
+            width:60,
+            height:60,
+            alignSelf:'center',
+            // borderWidth:1
+
+        },
+      
+       search:{
         position:'relative',
-        top:-30,
-        alignSelf:'flex-end',
-        width:'50%', 
-        height:'50%',
-      },
-    
-      text:{
-        fontSize: 13,
-        fontWeight:'bold',
-        color:'#fff',
-      },
-      card:{
-        position:'absolute',
-        width:'100%', 
-        height: '100%',
-        borderRadius:10,
-        zIndex:-1,
-      }
+        top:45,
+        width:width*1.8/2, 
+        height:28,
+        zIndex:1,
+        alignSelf:'center',
+        borderRadius:20,
+        backgroundColor:'#e6e1cf',
+        shadowColor: "grey",
+        shadowOpacity: 0.6,
+        shadowRadius: 5,
+        shadowOffset: {
+          height: 6,
+          width: 0
+        },
+       }
+
+        
     
 })
